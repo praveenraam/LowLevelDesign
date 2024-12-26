@@ -2,8 +2,17 @@ package Models;
 
 import java.util.Random;
 public class Dice {
-    public static int RolledDiceValue(){
-        Random random = new Random();
-        return random.nextInt(7);
+    int size;
+    Random random;
+    public Dice(int size){
+        this.size = size;
+        random = new Random();
+    }
+    public int RolledDiceValue(){
+        int value = 0;
+        for(int ite=0;ite<size;ite++){
+            value += random.nextInt(7);
+        }
+        return value;
     }
 }

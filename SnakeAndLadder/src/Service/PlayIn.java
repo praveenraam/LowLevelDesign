@@ -4,6 +4,7 @@ import Models.Players;
 
 public class PlayIn {
     Inputs in = new Inputs();
+    Dice dice = new Dice(1);
 
     public void startPlay(){
 
@@ -15,12 +16,12 @@ public class PlayIn {
 
             int CurrPosition = CurrPlayer != null ? CurrPlayer.getPosition() : 0;
 
-            int DiceValue = Dice.RolledDiceValue();
-            while(DiceValue == 0) DiceValue = Dice.RolledDiceValue(); // Ignoring 0 as Dice value
+            int DiceValue = dice.RolledDiceValue();
+            while(DiceValue == 0) DiceValue = dice.RolledDiceValue(); // Ignoring 0 as Dice value
 
             int NextValue = CurrPosition+DiceValue;
 
-            if(NextValue == 100){ // Winner
+            if(hasWon(NextValue)){ // Winner
                 System.out.println(CurrPlayer.name + " wins the game by rolling "+DiceValue);
                 break;
             }
@@ -42,6 +43,10 @@ public class PlayIn {
 
             in.playersQueue.add(CurrPlayer); // adding the player back to the Queue.
         }
+    }
+
+    boolean hasWon(int nextValue){
+        return nextValue == 100;
     }
 
 }

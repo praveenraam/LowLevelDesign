@@ -1,15 +1,8 @@
 package Models;
 
-public class Snakes {
-    int start = 0;
-    public int end;
-    public Snakes(int start,int end){
-        if(start<end){
-            System.out.println("Can't create object, start should be greater than end");
-        }
-        else{
-            this.start = start;
-            this.end = end;
-        }
+public class Snakes extends PairPosition{
+    public Snakes(int start, int end) {
+        super(start, end);
+        if(start<=end) System.out.println("Snake's start must be greater");
     }
 }

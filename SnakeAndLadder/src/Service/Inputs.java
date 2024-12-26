@@ -15,7 +15,6 @@ public class Inputs {
 
     public HashMap<Integer, Snakes> snakesMap = new HashMap<>();
     public HashMap<Integer, Ladders> laddersMap = new HashMap<>();
-
     public Queue<Players> playersQueue = new LinkedList<>();
 
     protected void inputs(){
@@ -62,5 +61,4 @@ public class Inputs {
             playersQueue.add(player);
         }
     }
-
 }
