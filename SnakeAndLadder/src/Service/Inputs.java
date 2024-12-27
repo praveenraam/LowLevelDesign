@@ -3,25 +3,34 @@ package Service;
 import Models.PairPosition;
 import Models.Players;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class Inputs {
 
     Scanner in = new Scanner(System.in);
     public HashMap<Integer, PairPosition> snakesMap = new HashMap<>();
     public HashMap<Integer, PairPosition> laddersMap = new HashMap<>();
-    public Queue<Players> playersQueue = new LinkedList<>();
+    public Deque<Players> playersQueue = new ArrayDeque<>();
+    int diceSize;
+    int boardSize;
 
     protected void inputs(){
+//        SizeOfTheBoard
+        BoardSizeInput();
+//        NoOfDicesInput
+        DiceSizeInput();
 //        System.out.println("Enter No of Snakes : ");
         SnakesInput();
 //        System.out.println("Enter No of Ladders :");
         LaddersInput();
 //        System.out.println("Enter the No of Players : ");
         PlayersInput();
+    }
+    public void BoardSizeInput(){
+        this.boardSize = in.nextInt();
+    }
+    public void DiceSizeInput(){
+        this.diceSize = in.nextInt();
     }
     public void SnakesInput(){
         int NoOfSnakes = in.nextInt();
@@ -68,5 +77,32 @@ public class Inputs {
             Players player = new Players(Name);
             playersQueue.add(player);
         }
+    }
+
+    public boolean SnakeContains(int key){
+        return snakesMap.containsKey(key);
+    }
+    public int SnakeEnd(int key){
+        return snakesMap.get(key).end;
+    }
+
+    public boolean LadderContains(int key){
+        return snakesMap.containsKey(key);
+    }
+    public int LadderEnd(int key){
+        return snakesMap.get(key).end;
+    }
+
+    public void AddPlayerToQueue(Players player){
+        playersQueue.add(player);
+    }
+    public Players GetPlayerFromQueue(){
+        return  playersQueue.removeFirst();
+    }
+    public void AddPlayerToFrontOfQueue(Players players){
+        playersQueue.addFirst(players);
+    }
+    public int NoOfPlayersLeft(){
+        return playersQueue.size();
     }
 }

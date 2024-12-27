@@ -9,10 +9,6 @@ public class Dice {
         random = new Random();
     }
     public int RolledDiceValue(){
-        int value = 0;
-        for(int ite=0;ite<size;ite++){
-            value += (random.nextInt(6)+1);
-        }
-        return value;
+        return random.nextInt(size)+1;
     }
 }
