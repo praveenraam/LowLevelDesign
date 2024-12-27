@@ -17,7 +17,6 @@ public class PlayIn {
             int CurrPosition = CurrPlayer != null ? CurrPlayer.getPosition() : 0;
 
             int DiceValue = dice.RolledDiceValue();
-            while(DiceValue == 0) DiceValue = dice.RolledDiceValue(); // Ignoring 0 as Dice value
 
             int NextValue = CurrPosition+DiceValue;
 

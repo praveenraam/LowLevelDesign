@@ -11,7 +11,7 @@ public class Dice {
     public int RolledDiceValue(){
         int value = 0;
         for(int ite=0;ite<size;ite++){
-            value += random.nextInt(7);
+            value += (random.nextInt(6)+1);
         }
         return value;
     }

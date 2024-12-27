@@ -1,8 +1,7 @@
 package Service;
 
-import Models.Ladders;
+import Models.PairPosition;
 import Models.Players;
-import Models.Snakes;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,9 +11,8 @@ import java.util.Scanner;
 public class Inputs {
 
     Scanner in = new Scanner(System.in);
-
-    public HashMap<Integer, Snakes> snakesMap = new HashMap<>();
-    public HashMap<Integer, Ladders> laddersMap = new HashMap<>();
+    public HashMap<Integer, PairPosition> snakesMap = new HashMap<>();
+    public HashMap<Integer, PairPosition> laddersMap = new HashMap<>();
     public Queue<Players> playersQueue = new LinkedList<>();
 
     protected void inputs(){
@@ -31,9 +29,14 @@ public class Inputs {
 //            System.out.println("Enter the start and end : ");
             int start = in.nextInt();
             int end = in.nextInt();
-
-            Snakes snake = new Snakes(start,end);
-            snakesMap.put(start,snake);
+            if(start<=end) {
+                System.out.println("Snake's start must be greater");
+                ite--;
+            }
+            else {
+                PairPosition snake = new PairPosition(start,end);
+                snakesMap.put(start,snake);
+            }
         }
     }
     public void LaddersInput(){
@@ -43,9 +46,14 @@ public class Inputs {
 
             int start = in.nextInt();
             int end = in.nextInt();
-
-            Ladders ladder = new Ladders(start,end);
-            laddersMap.put(start,ladder);
+            if(start>=end) {
+                System.out.println("Ladder's start must be greater");
+                ite--;
+            }
+            else{
+                PairPosition ladder = new PairPosition(start,end);
+                laddersMap.put(start,ladder);
+            }
         }
     }
     public void PlayersInput(){
