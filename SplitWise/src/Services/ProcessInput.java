@@ -56,7 +56,7 @@ public class ProcessInput {
 
         if(typeOfSharing.equals("EQUAL")){
 
-            float perHead = amount/noOfUsers;
+            float perHead = amount/(noOfUsers);
             for(int userID : UserBorrowed.keySet()){
                 UserBorrowed.put(userID,perHead);
             }
@@ -107,7 +107,6 @@ public class ProcessInput {
         int LentUserId = Integer.parseInt(InputArr[1].substring(1));
         UserTracker.get(LentUserId).addExpend(arr);
 
-        System.out.println(UserBorrowed);
     }
 
 }

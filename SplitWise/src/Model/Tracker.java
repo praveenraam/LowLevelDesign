@@ -17,5 +17,10 @@ public class Tracker {
     protected float getAlreadyLentAmount(User user){
         return ExpenseLent.get(user);
     }
+    protected void removeFromExpense(User user){
+        if(ExpenseLendContains(user)){
+            ExpenseLent.remove(user);
+        }
+    }
 }
 

@@ -18,32 +18,35 @@ public class User extends Tracker {
 
     public void addExpend(MoneyMapped[] Arr){
         for(MoneyMapped var : Arr){
+            if(var.user.userID == userID) continue;
             if(!ExpenseLendContains(var.user)){
                 setExpenseLent(var.user,0f);
             }
             float AlreadyLent = getAlreadyLentAmount(var.user);
-            setExpenseLent(var.user,AlreadyLent+ var.money);
+            AverageTheExpense(var.user,AlreadyLent+ var.money);
         }
     };
 
 
     public static void ShowAllExpense(){
+        boolean isAllEmpty = true;
         for(Integer userId : UserTracker.keySet()){
             User user = UserTracker.get(userId);
             HashMap<User,Float> ExpenseLentHashMap = user.getExpenseLent();
 
             if(ExpenseLentHashMap.isEmpty()) {
-                System.out.println("No Balances");
                 continue;
             }
-
+            isAllEmpty = false;
             for(User MoneyBorrower : ExpenseLentHashMap.keySet()){
-                System.out.print("u"+userId+" owes User"+ MoneyBorrower.userID+":");
+                if(ExpenseLentHashMap.get(MoneyBorrower) == 0) continue;
+                System.out.print("user"+MoneyBorrower.userID +" owes User" +userId+": ");
                 System.out.printf("%.0f",ExpenseLentHashMap.get(MoneyBorrower));
                 System.out.println();
             }
 
         }
+        if(isAllEmpty) System.out.println("No Balances");
     }
 
     public void SpecificUserExpense(){
@@ -55,9 +58,28 @@ public class User extends Tracker {
         }
 
         for(User MoneyBorrower : ExpenseLentHashMap.keySet()){
-            System.out.print("u"+userID+" owes User"+ MoneyBorrower.userID+":");
+            if(ExpenseLentHashMap.get(MoneyBorrower) == 0) continue;
+            System.out.print("user"+MoneyBorrower.userID +" owes User" +userID+": ");
             System.out.printf("%.0f",ExpenseLentHashMap.get(MoneyBorrower));
             System.out.println();
+        }
+    }
+
+    public void AverageTheExpense(User user,float currLendingAmount){
+        User currLender = UserTracker.get(userID);
+        float amountAlreadyBorrowed = 0;
+        if(user.ExpenseLendContains(currLender)){
+            amountAlreadyBorrowed = user.getAlreadyLentAmount(currLender);
+        }
+        if(currLendingAmount == amountAlreadyBorrowed){
+            user.setExpenseLent(currLender,0f);
+        }
+        else if(currLendingAmount < amountAlreadyBorrowed){
+            user.setExpenseLent(currLender,amountAlreadyBorrowed-currLendingAmount);
+        }
+        else{
+            currLender.setExpenseLent(user,currLendingAmount-amountAlreadyBorrowed);
+            user.removeFromExpense(currLender);
         }
     }
 
