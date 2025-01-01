@@ -1,5 +1,6 @@
 package Model;
 
+import javax.sql.rowset.BaseRowSet;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -27,7 +28,6 @@ public class User extends Tracker {
         }
     };
 
-
     public static void ShowAllExpense(){
         boolean isAllEmpty = true;
         for(Integer userId : UserTracker.keySet()){
@@ -46,21 +46,67 @@ public class User extends Tracker {
             }
 
         }
+
+        for(Integer userId : UserTracker.keySet()){
+            HashMap<User,Float> BorrowedAmounts = new HashMap<>();
+            for(Integer IteruserID : UserTracker.keySet()){
+                User LentUser = UserTracker.get(IteruserID);
+                User BorrowedUser = UserTracker.get(userId);
+                float amount = 0f;
+                if(LentUser.ExpenseLendContains(BorrowedUser)){
+                    amount = LentUser.getAlreadyLentAmount(BorrowedUser);
+                }
+                if(amount != 0f){
+                    BorrowedAmounts.put(LentUser,amount);
+                }
+            }
+            if(BorrowedAmounts.isEmpty()) {
+                continue;
+            }
+            isAllEmpty = false;
+            for(User user : BorrowedAmounts.keySet()){
+                System.out.print("user"+userId+" owes User"+user.userID+": ");
+                System.out.printf("%.0f",BorrowedAmounts.get(user));
+                System.out.println();
+            }
+
+        }
         if(isAllEmpty) System.out.println("No Balances");
+
     }
 
     public void SpecificUserExpense(){
         HashMap<User,Float> ExpenseLentHashMap = getExpenseLent();
+        boolean isBorrowed = false;
+        HashMap<User,Float> BorrowedAmounts = new HashMap<>();
 
-        if(ExpenseLentHashMap.isEmpty()) {
+        for(Integer IteruserID : UserTracker.keySet()){
+            User LentUser = UserTracker.get(IteruserID);
+            User BorrowedUser = UserTracker.get(this.userID);
+            float amount = 0f;
+            if(LentUser.ExpenseLendContains(BorrowedUser)){
+                amount = LentUser.getAlreadyLentAmount(BorrowedUser);
+                isBorrowed = true;
+            }
+            if(amount != 0f){
+                BorrowedAmounts.put(LentUser,amount);
+            }
+        }
+
+        if(ExpenseLentHashMap.isEmpty() && (!isBorrowed)) {
             System.out.println("No Balances");
             return;
         }
 
         for(User MoneyBorrower : ExpenseLentHashMap.keySet()){
             if(ExpenseLentHashMap.get(MoneyBorrower) == 0) continue;
-            System.out.print("user"+MoneyBorrower.userID +" owes User" +userID+": ");
+            System.out.print("user"+MoneyBorrower.userID +" owes User" +this.userID+": ");
             System.out.printf("%.0f",ExpenseLentHashMap.get(MoneyBorrower));
+            System.out.println();
+        }
+        for(User user : BorrowedAmounts.keySet()){
+            System.out.print("user"+this.userID+" owes User"+user.userID+": ");
+            System.out.printf("%.0f",BorrowedAmounts.get(user));
             System.out.println();
         }
     }

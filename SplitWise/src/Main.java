@@ -21,7 +21,6 @@ public class Main {
             ProcessInput newOps = new ProcessInput();
             newOps.ProcessInputArr();
 
-
         }
 
     }
