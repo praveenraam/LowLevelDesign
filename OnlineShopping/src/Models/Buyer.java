@@ -21,7 +21,7 @@ public class Buyer extends User {
         BuyerMap.put(buyId,this);
     }
 
-    public User getUser(int ID){
+    static public Buyer getUser(int ID){
         return BuyerMap.get(ID);
     }
     public void changeDeliveryStatus(Product DeliveryStatus){

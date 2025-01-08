@@ -35,7 +35,8 @@ public class Product implements Comparable<Product>{
         ProductList.remove(ProductID);
     }
     public double getPrice(){
-        return price*(discount/100);
+        if(discount == 0) return price;
+        return price - (price*(discount/100));
     }
     public void setPrice(double newPrice){
         this.price = newPrice;

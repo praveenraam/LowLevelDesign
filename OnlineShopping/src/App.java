@@ -28,5 +28,14 @@ public class App {
 
         B1.ListOfOrders();
         B2.ListOfOrders();
+        B1.ChangeAddress("1/51B");
+        B2.CancelOrder(Product.getProductWithID(1));
+
+        Buyer B1Copy = Buyer.getUser(1);
+        System.out.println(S2.getSellerProductsList());
+
+        System.out.println(Product.getProductWithID(1).getPrice());
+        Product.getProductWithID(1).setDiscount(0);
+        System.out.println(Product.getProductWithID(1).getPrice());
     }
 }
