@@ -10,7 +10,7 @@ public class Buyer extends User {
     HashMap<Product,Boolean> ProductOrders;
     static int noOfBuyer = 0;
 
-    private static HashMap<Integer,Buyer> BuyerMap = new HashMap<>();
+    private static final HashMap<Integer,Buyer> BuyerMap = new HashMap<>();
 
     public Buyer(String name,String email,String password,String address){
         super(name,email,password);
@@ -40,10 +40,7 @@ public class Buyer extends User {
     }
     public boolean ChangeAddress(String newAddress){
         address = newAddress;
-        if(address.equals(newAddress)){
-            return true;
-        }
-        return false;
+        return address.equals(newAddress);
     }
 
     public void ListOfOrders(){
@@ -51,11 +48,11 @@ public class Buyer extends User {
         for(Product product : ProductOrders.keySet()){
             System.out.println("    Product ID   : "+product.ProductID );
             System.out.println("        Product Name : "+product.name);
-            boolean isDeliveried = ProductOrders.get(product);
-            if(isDeliveried){
-                System.out.println("        Order status : Not deliveried");
+            boolean isDelivered = ProductOrders.get(product);
+            if(isDelivered){
+                System.out.println("        Order status : Not delivered");
             }
-            else System.out.println("        Order status : Deliveried");
+            else System.out.println("        Order status : Delivered");
         }
     }
 
