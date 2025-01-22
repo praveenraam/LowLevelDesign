@@ -10,7 +10,9 @@ public class Account {
     String PhoneNo;
     private boolean isLogged;
 
-
+    boolean VerifyAccountPassword(String passwordInp){
+        return passwordInp.equals(Password);
+    }
 
 
 }

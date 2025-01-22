@@ -1,48 +1,50 @@
 package Models;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Bank {
 
     String name;
     float chargesForOtherBank=20.0f;
 
+    static HashSet<Bank> AllBankSet = new HashSet<>();
+    static HashMap<ATM,Bank> ATMsBankList = new HashMap<>();
+    HashMap<Integer,Account> BanksAccountIdMap = new HashMap<>();
+
     Bank(String name){
         this.name = name;
+        AllBankSet.add(this);
     }
     Bank(String name,float chargesForOtherBank){
         this.name = name;
         this.chargesForOtherBank = chargesForOtherBank;
+        AllBankSet.add(this);
     }
 
-    public boolean depositAmountToATM(float Amount,ATM toATM,String password){
-        if(toATM.OwnerBank.equals(this) && toATM.getPassword().equals(password)){
+    public String depositAmountToATM(float Amount,ATM toATM,String password){
+        if(toATM.OwnerBank.equals(this) && toATM.VerifyPassword(password)){
             toATM.DepositAmount(Amount);
-            System.out.println("Money successfully deposited");
-            return true;
+            return "Money successfully deposited";
         }
-        System.out.println("Money deposit process failed");
-        return false;
+        return "Money deposit process failed";
     }
 
-    public boolean withdrawAmount(float amount,ATM fromATM,String password){
-        if(fromATM.OwnerBank.equals(this) && fromATM.getPassword().equals(password)){
+    public String withdrawAmount(float amount,ATM fromATM,String password){
+        if(fromATM.OwnerBank.equals(this) && fromATM.VerifyPassword(password)){
             if(fromATM.getAmountBalanceInATM() < amount){
-                System.out.println("Insufficient Balance");
-                return false;
+                return "Insufficient Balance";
+
             }
-            System.out.println("Successfully withdrawed");
-            return true;
+            return  "Successfully withdrawed";
         }
-        System.out.println("Money withdraw process failed");
-        return false;
+        return "Money withdraw process failed";
     }
 
-    public float getBalanceOfATM(ATM W_ATM,String password){
-        if(W_ATM.getPassword().equals(password)){
-            System.out.println("The Balance Amount is "+W_ATM.getAmountBalanceInATM());
-            return W_ATM.getAmountBalanceInATM();
+    public String getBalanceOfATM(ATM W_ATM,String password){
+        if(W_ATM.VerifyPassword(password)){
+            return "The Balance Amount is "+W_ATM.getAmountBalanceInATM();
         }
-        System.out.println("Balance fetching process failed due to incorrect password");
-        return 0.0f;
+        return "Balance fetching process failed due to incorrect password";
     }
 
 }
