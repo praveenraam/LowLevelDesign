@@ -3,19 +3,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Bank {
-
+    static HashSet<Bank> AllBankSet = new HashSet<>();
+    HashSet<ATM> ATMsBankList = new HashSet<>();
+    HashMap<Integer,Account> BanksAccountIdMap = new HashMap<>();
     String name;
     float chargesForOtherBank=20.0f;
-
-    static HashSet<Bank> AllBankSet = new HashSet<>();
-    static HashMap<ATM,Bank> ATMsBankList = new HashMap<>();
-    HashMap<Integer,Account> BanksAccountIdMap = new HashMap<>();
-
-    Bank(String name){
+    public Bank(String name){
         this.name = name;
         AllBankSet.add(this);
     }
-    Bank(String name,float chargesForOtherBank){
+    public Bank(String name,float chargesForOtherBank){
         this.name = name;
         this.chargesForOtherBank = chargesForOtherBank;
         AllBankSet.add(this);
@@ -23,7 +20,7 @@ public class Bank {
 
     public String depositAmountToATM(float Amount,ATM toATM,String password){
         if(toATM.OwnerBank.equals(this) && toATM.VerifyPassword(password)){
-            toATM.DepositAmount(Amount);
+            toATM.DepositAmountToATM(Amount);
             return "Money successfully deposited";
         }
         return "Money deposit process failed";
