@@ -1,5 +1,10 @@
+import Models.ATM;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        ATM atm = new ATM("YesBank","yesbank_1");
+        atm.newProcessor.startMachine();
+
     }
 }

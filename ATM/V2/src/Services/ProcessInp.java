@@ -1,13 +1,13 @@
 package Services;
 
 import Models.*;
-import Models.Account.*;
 
 import java.util.Scanner;
 
 public class ProcessInp {
     Scanner inputGather = new Scanner(System.in);
     Account currAccount;
+    ATM currATM;
 
     public void startMachine(){
         while(true){
@@ -23,6 +23,7 @@ public class ProcessInp {
                 if(LoginExecution()){
                     currAccount.changeLogin();
                     System.out.println("Logic Successful");
+                    LoginInputProcess();
                 }
                 else System.out.println("Login failed : Wrong Creadentials");
 
@@ -36,7 +37,7 @@ public class ProcessInp {
 
             }
             else if(firstInput == 3){
-                if(DepositAmountByBankLogin()){
+                if(FillAmountByBankLogin()){
 
                 }
                 else System.out.println("Enter the password Correct");
@@ -44,17 +45,20 @@ public class ProcessInp {
             else System.out.println("Enter valid number");
         }
     }
-    public void InputProcessStart(){
+    public void LoginInputProcess(){
 
         while(true){
-            String LoginOutput = " - For deposit press 1 \n - For withdrawal press 2\n - For changing pin press 3\n - For getting balance press 4\n - For logout press 5\n Enter : ";
+            String LoginOutput = "Menu\n - For deposit press 1 \n - For withdrawal press 2\n - For changing pin press 3\n - For getting balance press 4\n - For logout press 5\n Enter : ";
             System.out.print(LoginOutput);
 
             int loginInput = inputGather.nextInt();
+            inputGather.nextLine();
 
             if(loginInput == 1){
                 String depositOutput = " - Enter the amount : ";
+                System.out.println(depositOutput);
                 float amountToDeposit = inputGather.nextFloat();
+                inputGather.nextLine();
 
                 currAccount.depositAmount(amountToDeposit);
                 System.out.println(amountToDeposit +"is added successfully");
@@ -63,6 +67,7 @@ public class ProcessInp {
             else if(loginInput == 2){
                 String withdrawOutput = " - Enter the amount : ";
                 float amountToWithdraw = inputGather.nextFloat();
+                inputGather.nextLine();
 
                 if(currAccount.withdrawAmount(amountToWithdraw))
                 {
@@ -74,11 +79,16 @@ public class ProcessInp {
             }
             else if(loginInput == 3){
                 String changePinOutput = " - Enter the current Pin : ";
+                System.out.println(changePinOutput);
                 int currPin = inputGather.nextInt();
+                inputGather.nextLine();
 
                 if(currAccount.checkPin(currPin)){
                     String newPinOutput = " - Enter the new Pin : ";
+                    System.out.println(newPinOutput);
                     int newPin = inputGather.nextInt();
+                    inputGather.nextLine();
+
                     currAccount.setPin(newPin);
                     System.out.println();
                 }
@@ -91,15 +101,46 @@ public class ProcessInp {
             else if(loginInput == 5){
                 currAccount.changeLogout();
                 currAccount = null;
+                return;
             }
+            else System.out.println("Enter the valid number");
         }
+    }
+    public void ATMmoneyDepositProcess(){
+        while(true){
+            String ATMDepositInput = "Menu\n - Press 1 for Filling money\n - Press 2 for getting balance\n - Press 3 for Logout";
+            System.out.println(ATMDepositInput);
 
+            int nextInput = inputGather.nextInt();
+            inputGather.nextLine();
+
+
+            if(nextInput == 1){
+                String depositOutput = " - Enter the amount : ";
+                System.out.println(depositOutput);
+                float fillingAmount = inputGather.nextFloat();
+                inputGather.nextLine();
+
+
+                currATM.updateAmount(fillingAmount);
+                System.out.println("Amount Added successfully");
+            }
+            else if(nextInput == 2){
+                System.out.println(currATM.getAmountInATM());
+            }
+            else if(nextInput == 3){
+                currATM = null;
+                System.out.println("Logout Successfully");
+            }
+            else System.out.println("Enter the valid number");
+        }
     }
 
 
     private boolean LoginExecution(){
         System.out.print("Enter Account NO : ");
         int AccountNo = inputGather.nextInt();
+        inputGather.nextLine();
 
         System.out.print("\nEnter the Pin : ");
         int pinEntered = inputGather.nextInt();
@@ -110,7 +151,6 @@ public class ProcessInp {
 
         if(currAccount.checkPin(pinEntered)){
             System.out.println();
-            InputProcessStart();
             return true;
         }
         return false;
@@ -133,10 +173,15 @@ public class ProcessInp {
         }
         return false;
     }
-    private boolean DepositAmountByBankLogin(){
+    private boolean FillAmountByBankLogin(){
         System.out.print("Enter the password : ");
         String password = inputGather.nextLine();
-        if(1>1) return true;
+
+        currATM = ATM.allATMMap.get(this);
+        if(currATM.checkPassword(password)){
+            ATMmoneyDepositProcess();
+            return true;
+        }
         return false;
     }
 
