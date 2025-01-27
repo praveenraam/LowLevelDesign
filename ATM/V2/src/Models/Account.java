@@ -6,7 +6,6 @@ import java.util.HashSet;
 public class Account {
     private static int totalAccount = 0;
     static public HashMap<Integer,Account> allAccountIdMap = new HashMap<>();
-    static HashSet<String> setForPan = new HashSet<>();
     public int accountNO;
     public String userName;
     private int pin;

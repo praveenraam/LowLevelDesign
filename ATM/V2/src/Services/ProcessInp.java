@@ -66,12 +66,13 @@ public class ProcessInp {
             }
             else if(loginInput == 2){
                 String withdrawOutput = " - Enter the amount : ";
+                System.out.println(withdrawOutput);
                 float amountToWithdraw = inputGather.nextFloat();
                 inputGather.nextLine();
 
                 if(currAccount.withdrawAmount(amountToWithdraw))
                 {
-                    System.out.println(withdrawOutput +"is withdrawn successfully");
+                    System.out.println(amountToWithdraw +"is withdrawn successfully");
                 }
                 else {
                     System.out.println("Insufficient Balance");
@@ -99,6 +100,8 @@ public class ProcessInp {
                 System.out.println("Current Account Balance is "+ currAccount.getAccountBalance());
             }
             else if(loginInput == 5){
+                String logoutOutput = "Logout successful";
+                System.out.println(logoutOutput);
                 currAccount.changeLogout();
                 currAccount = null;
                 return;
@@ -162,7 +165,7 @@ public class ProcessInp {
         System.out.print("\nEnter your Pan Number : ");
         String panNo = inputGather.nextLine();
 
-        System.out.print("\nEnter 4 Digit Pin");
+        System.out.print("\nEnter 4 Digit Pin : ");
         int pin = inputGather.nextInt();
         inputGather.nextLine();
 
