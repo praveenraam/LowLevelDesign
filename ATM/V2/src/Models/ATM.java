@@ -15,7 +15,7 @@ public class ATM {
         this.bankName = bankName;
         this.password = password;
         amountInATM = 0.0f;
-        newProcessor = new ProcessInp();
+        newProcessor = ProcessInp.getInstance();
         allATMMap.put(newProcessor,this);
     }
 

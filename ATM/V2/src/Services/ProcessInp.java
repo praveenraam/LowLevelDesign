@@ -8,6 +8,11 @@ public class ProcessInp {
     Scanner inputGather = new Scanner(System.in);
     Account currAccount;
     ATM currATM;
+    static ProcessInp instance =  new ProcessInp();
+    private ProcessInp(){}
+    public static ProcessInp getInstance(){
+        return instance;
+    }
 
     public void startMachine(){
         while(true){
