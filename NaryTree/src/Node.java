@@ -23,33 +23,23 @@ public class Node {
         return this.isLockable;
     }
 
+    private static boolean parentIsLocked(Node root){
+        if(root == null) return true;
+        if(root.isLock) return false;
+
+        return parentIsLocked(root.parent);
+    }
     static boolean lock(Node root){
         if(root == null) return false;
-        if(root.isLocked() || !root.getIsLockable()) return false;
+        if(root.isLock || !root.isLockable ) return false;
 
-        Node parent = root.parent;
-        boolean canLock = true;
+        boolean isParentLocked = parentIsLocked(root.parent);
+        
 
-        while(parent != null){
-            if(!parent.isLockable){
-                canLock = false;
-                break;
-            }
-            parent = parent.parent;
-        }
-        if(!canLock) return false;
-
-        root.isLock = true;
-        parent = root.parent;
-        while(parent != null){
-            parent.isLockable = false;
-            parent = parent.parent;
-        }
-
-        updateChildren(root,false);
-
-        return true;
     }
+
+
+
     static boolean unlock(Node root){
         if(root == null) return false;
         if(!root.isLocked()) return false;

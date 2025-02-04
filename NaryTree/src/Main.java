@@ -11,6 +11,7 @@ public class Main {
         Node grandChild = new Node(4, child1);
 
         System.out.println("Locking child1: " + Node.lock(child1)); // true
+        System.out.println("Locking child2: " + Node.lock(child2)); // true
         System.out.println("Locking root: " + Node.lock(root)); // false (child1 is locked)
         System.out.println("Unlocking child1: " + Node.unlock(child1)); // true
         System.out.println("Locking root: " + Node.lock(root)); // true (now it works)
