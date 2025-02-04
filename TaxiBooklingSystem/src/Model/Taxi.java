@@ -1,14 +1,21 @@
 package Model;
 
 public class Taxi {
-    private int taxID;
+    private int taxiID;
     private int customerID;
-    private char Current_position = 'A';
+    private char Current_position;
     private char pick_up_position;
     private char destiny_position;
     private int pickUp_time;
     private int drop_time;
-    private int earnings;
+    private float earnings;
+
+    Taxi(int taxiID){
+        this.taxiID = taxiID;
+        this.customerID = 'A';
+        this.earnings = 0.0f;
+    }
+
 
     // Current Position
     public void setCurrent_position(char current_position) {
@@ -25,7 +32,6 @@ public class Taxi {
     public int getCustomerID() {
         return customerID;
     }
-
 
     // Pickups,drop timings and positions
     public void setPickUp_time(int pickUp_time) {
@@ -54,13 +60,11 @@ public class Taxi {
     }
 
     // Earnings
-    public void setEarnings(int earnings) {
+    public void setEarnings(float earnings) {
         this.earnings = earnings;
     }
-    public int getEarnings(){
+    public float getEarnings(){
         return earnings;
     }
-
-
 
 }

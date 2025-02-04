@@ -1,5 +1,6 @@
 package InpProcessor;
 
+import static Model.Methods.*;
 import java.util.Scanner;
 
 public class ProcessInp {
@@ -8,20 +9,30 @@ public class ProcessInp {
 
     public static void start(){
 
-        String bookingOrDetailsContent = "1 to book taxi\n2 to view Details\n";
-        System.out.print(bookingOrDetailsContent);
+        String taxiCount = "Enter the number of Taxi : ";
+        System.out.print(taxiCount);
 
-        int bookingOrDetails = inputGetter.nextInt();
+        int numberOfTaxi = inputGetter.nextInt();
+        createTaxi(numberOfTaxi);
+        inputGetter.nextLine();
 
-        if(bookingOrDetails == 1){
+        while(true){
+            String bookingOrDetailsContent = "1 to book taxi\n2 to view Details\n3 to Exit\n";
+            System.out.print(bookingOrDetailsContent);
 
+            int bookingOrDetails = inputGetter.nextInt();
 
+            if(bookingOrDetails == 1){
+
+            }
+            else if(bookingOrDetails == 2){
+
+            }
+            else if(bookingOrDetails == 3){
+
+            }
+            else System.out.println();
         }
-        else if(bookingOrDetails == 2){
-
-
-        }
-        else System.out.println();
 
     }
 
