@@ -1,19 +1,18 @@
 package Model;
 
 public class Taxi {
-    private int taxiID;
+    public int taxiID;
     private int customerID;
     private char Current_position;
     private char pick_up_position;
     private char destiny_position;
     private int pickUp_time;
     private int drop_time;
-    private float earnings;
+    private int earnings;
 
     Taxi(int taxiID){
         this.taxiID = taxiID;
         this.customerID = 'A';
-        this.earnings = 0.0f;
     }
 
 
@@ -60,10 +59,10 @@ public class Taxi {
     }
 
     // Earnings
-    public void setEarnings(float earnings) {
+    public void setEarnings(int earnings) {
         this.earnings = earnings;
     }
-    public float getEarnings(){
+    public int getEarnings(){
         return earnings;
     }
 
