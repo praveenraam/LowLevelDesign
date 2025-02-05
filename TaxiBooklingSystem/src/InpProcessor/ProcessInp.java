@@ -8,15 +8,15 @@ import java.util.Scanner;
 public class ProcessInp {
 
     // Singleton Class
-    ProcessInp processor = new ProcessInp();
+    static ProcessInp processor = new ProcessInp();
     private ProcessInp(){
 
     };
-    public ProcessInp getInstance(){
+    public static ProcessInp getInstance(){
         return processor;
     }
 
-    Scanner inputGetter = new Scanner(System.in);``
+    Scanner inputGetter = new Scanner(System.in);
     public void start(){
 
         String taxiCount = "Enter the number of Taxi : ";

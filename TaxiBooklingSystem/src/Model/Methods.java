@@ -20,7 +20,6 @@ public class Methods {
 
         for(Taxi taxi : taxiSet){
             if(taxi.getDrop_time() <= pickupTime && Math.abs(pickupPoint-taxi.getCurrent_position()) <= minDistance){
-
                 if(Math.abs(pickupPoint-taxi.getCurrent_position()) == minDistance){
                     if(taxiForPicking != null && taxiForPicking.getEarnings() < taxi.getEarnings()){
                         taxiForPicking = taxi;
@@ -37,18 +36,26 @@ public class Methods {
             System.out.println("Taxi is not Available");
         }
         else{
+            System.out.println(taxiForPicking.taxiID);
             noOfBooking++;
+
             // Customer ID
             taxiForPicking.setCustomerID(customerID);
+
             // Changing currPosition to Drop Point
             taxiForPicking.setCurrent_position(dropPoint);
+
             // Pickup point and time
             taxiForPicking.setPick_up_position(pickupPoint);
             taxiForPicking.setPickUp_time(pickupTime);
+
             // Drop point and time
             taxiForPicking.setDestiny_position(dropPoint);
-            int dropTime = Math.abs(pickupPoint-dropPoint);
-            taxiForPicking.setDrop_time(dropTime+pickupTime);
+
+            int travelTime = Math.abs(pickupPoint - dropPoint);
+            int dropTime = pickupTime + travelTime;
+            taxiForPicking.setDrop_time(dropTime);
+
             // Earnings
             int kmTravelled = Math.abs(pickupPoint-dropPoint)*15;
             int earnings = ((kmTravelled-5)*10)+(100);
@@ -56,28 +63,24 @@ public class Methods {
 
             HashSet<History> taxiHistory = taxiBookedHistory.getOrDefault(taxiForPicking,new HashSet<>());
             taxiHistory.add(new History(noOfBooking,customerID,pickupPoint,dropPoint,pickupTime,dropTime,earnings));
+            taxiBookedHistory.put(taxiForPicking,taxiHistory);
         }
-
     }
 
     public static void display(){
-
         for(Taxi taxi : taxiBookedHistory.keySet()){
             System.out.println("Taxi No : "+taxi.taxiID +"  Total Earnings: Rs."+taxi.getEarnings());
 
             for(History history: taxiBookedHistory.get(taxi)){
 
                 System.out.print(history.getBookingID()+"     ");
-                System.out.print(history.getCharges()+"     ");
+                System.out.print(history.getCustomerID()+"     ");
                 System.out.print(history.getFrom()+"     ");
                 System.out.print(history.getTo()+"     ");
                 System.out.print(history.getPickupTime()+"     ");
                 System.out.print(history.getDropTime()+"     ");
                 System.out.println(history.getCharges()+"     ");
             }
-
         }
-
     }
-
 }

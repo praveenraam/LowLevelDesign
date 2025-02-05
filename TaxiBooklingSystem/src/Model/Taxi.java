@@ -15,7 +15,6 @@ public class Taxi {
         this.customerID = 'A';
     }
 
-
     // Current Position
     public void setCurrent_position(char current_position) {
         Current_position = current_position;

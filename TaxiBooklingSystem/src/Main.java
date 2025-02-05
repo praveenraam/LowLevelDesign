@@ -1,5 +1,8 @@
+import InpProcessor.ProcessInp;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ProcessInp processor = ProcessInp.getInstance();
+        processor.start();
     }
 }
