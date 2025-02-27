@@ -21,8 +21,27 @@ public class Member {
         MemberList.add(this);
     }
 
-    public static void removeMember(Member member){
-        MemberList.remove(member);
+    public static void removeMember(String email){
+        for(Member member : MemberList){
+            if(member.getEmail().equals(email))
+                MemberList.remove(member);
+        }
+    }
+
+    public static Member checkLogin(String email,String password){
+        for(Member member : MemberList){
+            if(member.getEmail().equals(email)){
+                if(member.getPassword().equals(password)){
+                   return member;
+                }
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

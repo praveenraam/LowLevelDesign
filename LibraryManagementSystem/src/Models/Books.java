@@ -1,11 +1,11 @@
 package Models;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Books {
 
     static Long totalNoOfBooks = 0L;
-    static HashSet<Books> booksSet = new HashSet<>();
+    static HashMap<Books,Boolean> booksSet = new HashMap<>();
 
     Long id;
     private String author;
@@ -17,13 +17,29 @@ public class Books {
         this.author = author;
 
         id = ++totalNoOfBooks;
-        booksSet.add(this);
+        booksSet.put(this,true);
     }
 
-    public static void removeBook(Books book){
-        booksSet.remove(book);
+    public static void removeBook(Long id){
+        for(Books book : booksSet.keySet()){
+            if(book.getId().equals(id)){
+                booksSet.remove(book);
+            }
+        }
     }
 
+    public static Books searchBook(String bookName) {
+        for(Books book : booksSet.keySet()){
+            if(book.getBookName().equals(bookName)){
+                return book;
+            }
+        }
+        return null;
+    }
+
+    public Long getId(){
+        return id;
+    }
     public String getAuthor() {
         return author;
     }
