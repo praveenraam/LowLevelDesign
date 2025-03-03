@@ -14,8 +14,8 @@ public class Inphandler {
         while(true){
 
             String output1 = "Press No " +
-                    "\n - Enter 1 for Add Member " +
-                    "\n - Enter 2 for Remove Member" +
+                    "\n - Enter 1 for Member Login" +
+                    "\n - Enter 2 for Librarian Login" +
                     "\n - Enter 3 for Login Member"
                     /* + "\n - Enter 4 for Add book" +
                     "\n - Enter 5 for Remove book" */
@@ -27,31 +27,6 @@ public class Inphandler {
             inputGather.nextLine();
 
             if(inp1 == 1){
-
-                String output2 = "Enter name : ";
-                System.out.println(output2);
-                String name = inputGather.nextLine();
-
-                String output3 = "Enter the password : ";
-                System.out.println(output3);
-                String password = inputGather.nextLine();
-
-                String outout4 = "Enter the email : ";
-                System.out.println(outout4);
-                String email = inputGather.nextLine();
-
-                Member newMember = new Member(name,email,password);
-
-                System.out.println("Your ID is : "+newMember.getId());
-            }
-            else if(inp1 == 2){
-                String output2 = "Enter the email of member : ";
-                System.out.println(output2);
-                String email = inputGather.nextLine();
-
-                Member.removeMember(email);
-            }
-            else if(inp1 == 3){
 
                 String output2 = "Enter the email : ";
                 System.out.println(output2);
@@ -82,9 +57,18 @@ public class Inphandler {
 
                             Books book = Books.searchBook(bookName);
 
+                            if(book == null){
+                                System.out.println("No book found");
+                                continue;
+                            }
+                            else if(book.getCurrHolder() == null){
+                                System.out.println("Book already borrowed");
+                                continue;
+                            }
+
                             book.setCurrHolder(currMember);
                             currMember.borrowBook(book);
-
+                            System.out.println("Book is given");
 
                         } else if (inp2 == 2) {
 
@@ -93,9 +77,13 @@ public class Inphandler {
                             String bookName = inputGather.nextLine();
 
                             Books book = Books.searchBook(bookName);
-
+                            if(book == null){
+                                System.out.println("No book found");
+                                continue;
+                            }
                             book.setCurrHolder(null);
                             currMember.returnBook(book);
+                            System.out.println("Book is returned");
 
                         }
                         else if (inp2 == 3) {
@@ -111,7 +99,15 @@ public class Inphandler {
                 }
 
             }
-            /* else if(inp1 == 4){
+            else if(inp1 == 2){
+
+            }
+            else if(inp1 == 3){
+
+
+
+            }
+            else if(inp1 == 4){
 
                 String output2 = "Enter the book name : ";
                 System.out.println(output2);
@@ -131,7 +127,7 @@ public class Inphandler {
                 Long id = inputGather.nextLong();
                 inputGather.nextLine();
 
-            } */
+            }
             else{
                 System.out.println("Give valid input");
             }

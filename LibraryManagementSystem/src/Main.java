@@ -1,5 +1,10 @@
+import Services.Inphandler;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Inphandler newFunc = new Inphandler();
+        newFunc.start();
+
     }
 }
