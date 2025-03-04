@@ -66,4 +66,12 @@ public class Products {
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
+
+    public void listInventory(){
+        int no = 1;
+        for(Products product : productsList){
+            System.out.println(no + ". : "+product.getName());
+        }
+    }
+
 }

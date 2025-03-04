@@ -8,15 +8,14 @@ public class Seller {
     private Long id;
     private String email;
     private String password;
-    private List<Order> ordersList;
-    private List<Order> cart;
+    private List<Products> productList;
 
     public Seller(String email,String password){
 
         this.email = email;
         this.password = password;
         sellerList.add(this);
-        ordersList = new ArrayList<>();
+        productList = new ArrayList<>();
 
         id = (long)sellerList.size();
     }
@@ -34,4 +33,12 @@ public class Seller {
     public Long getId(){
         return id;
     }
+
+    public void addProduct(Products product){
+        productList.add(product);
+    }
+    public void removeProduct(Products product){
+        productList.remove(product);
+    }
+
 }
