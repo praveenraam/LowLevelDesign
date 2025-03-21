@@ -12,7 +12,6 @@ public class RegisterLoginController {
     private static Scanner in = new Scanner(System.in);
 
     public static void startLogin(){
-
         while(true){
 
             String out1 = "1 to login \n2 to register\n     : ";
@@ -22,54 +21,49 @@ public class RegisterLoginController {
             in.nextLine();
 
             if(inp1 == 1){
-                String out2 = "Enter Email : ";
-                System.out.println(out2);
-                String inpEmail = in.nextLine();
-
-                String out3 = "Enter password : ";
-                System.out.println(out3);
-                String inpPassword = in.nextLine();
-
-                UserAbsClass userOrAdmin = RegisterLoginService.verifyLogin(inpEmail,inpPassword);
-                if(userOrAdmin != null){
-
-                    System.out.println("You logged in");
-
-                    if(userOrAdmin.getRole().equals(Role.ADMIN)){
-                        // Call Function related to admin
-                    }
-                    else{
-                        // Call the main function
-                    }
-                }
-                else{
-                    System.out.println("Enter proper credentials");
-                }
+                handleLogin();
             }
             else if(inp1 == 2) {
-
-                String out2 = "Enter Name : ";
-                System.out.println(out2);
-                String inpName = in.nextLine();
-
-                String out3 = "Enter Email : ";
-                System.out.println(out3);
-                String inpEmail = in.nextLine();
-
-                String out4 = "Enter password : ";
-                System.out.println(out4);
-                String inpPassword = in.nextLine();
-
-                User user = RegisterLoginService.createUser(inpEmail, inpPassword, inpName);
-                System.out.println(user);
+                handleRegistration();
             }
             else{
                 System.out.println("Enter proper Number\n");
             }
-
         }
-
     }
 
+    public static void handleRegistration(){
+
+        String inpName = getStringInput("Enter the Name : ");
+        String inpEmail = getStringInput("Enter the Email : ");
+        String inpPassword = getStringInput("Enter the Password : ");
+
+        User user = RegisterLoginService.createUser(inpEmail, inpPassword, inpName);
+        System.out.println(user);
+    }
+    public static void handleLogin(){
+
+        String inpEmail = getStringInput("Enter the Email : ");
+        String inpPassword = getStringInput("Enter the Password : ");
+
+        UserAbsClass userOrAdmin = RegisterLoginService.verifyLogin(inpEmail,inpPassword);
+        if(userOrAdmin != null){
+            System.out.println("You logged in");
+            if(userOrAdmin.getRole().equals(Role.ADMIN)){
+                // Call Function related to admin
+            }
+            else{
+                // Call the main function
+            }
+        }
+        else{
+            System.out.println("Enter proper credentials");
+        }
+    }
+
+    public static String getStringInput(String outputMessage){
+        System.out.print(outputMessage);
+        return in.nextLine();
+    }
 
 }

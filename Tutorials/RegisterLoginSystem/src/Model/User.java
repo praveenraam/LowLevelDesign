@@ -34,8 +34,8 @@ public class User extends UserAbsClass{
     @Override
     public String toString() {
         return "User{ " +
-                ", id=" + id +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
