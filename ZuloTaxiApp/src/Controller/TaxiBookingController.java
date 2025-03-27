@@ -26,10 +26,8 @@ public class TaxiBookingController {
             System.out.println("Enter the Destination");
             Character destinationChar = in.next().charAt(0);
 
-
             Location sourceLoc = taxiBookingService.findLocation(sourceChar);
             Location destinationLoc = taxiBookingService.findLocation(destinationChar);
-
 
             Cab cab = taxiBookingService.findNearestCab(sourceLoc);
 
@@ -44,7 +42,11 @@ public class TaxiBookingController {
             int val = in.nextInt();
             in.nextLine();
 
-            if(val == 1) System.out.println("Your travel confirmed");
+            if(val == 1){
+                System.out.println("Your travel confirmed");
+                taxiBookingService.falseToAllTaxiRide();
+                cab.setLastRide(true);
+            }
             else
                 System.out.println("Your travel cancelled");
     }

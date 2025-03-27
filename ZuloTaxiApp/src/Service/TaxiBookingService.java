@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static Data.Data.cabArrayList;
 import static Data.Data.locationArrayList;
 
 public class TaxiBookingService {
@@ -52,8 +53,12 @@ public class TaxiBookingService {
             Location location2 = null;
             if(p2 < locationArrayList.size()) location2 = locationArrayList.get(p2);
 
-            if(location1 != null && trackMap.get(location1) != null) return trackMap.get(location1).get(0);
-            if(location2 != null && trackMap.get(location2) != null) return trackMap.get(location2).get(0);
+            if(location1 != null && trackMap.get(location1) != null) {
+                return findLowCountCab(trackMap.get(location1));
+            }
+            if(location2 != null && trackMap.get(location2) != null) {
+                return findLowCountCab(trackMap.get(location2));
+            }
 
             p1--; p2++;
         }
@@ -61,5 +66,22 @@ public class TaxiBookingService {
         return null;
     }
 
+    public Cab findLowCountCab(List<Cab> cabListInLocation){
+        Cab cab = cabListInLocation.get(0);
+        for(int iter=1;iter<cabListInLocation.size();iter++){
+            Cab currCab = cabListInLocation.get(iter);
+            if(cab.getCountOfRides() > currCab.getCountOfRides()){
+                if(!currCab.getLastRide())
+                    cab = cabListInLocation.get(iter);
+            }
+        }
+        return cab;
+    }
+
+    public void falseToAllTaxiRide(){
+        for(Cab cab : cabArrayList){
+            cab.setLastRide(false);
+        }
+    }
 
 }
