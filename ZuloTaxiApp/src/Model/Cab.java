@@ -14,4 +14,24 @@ public class Cab {
         Data.cabArrayList.add(this);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Location getCurrLocation() {
+        return currLocation;
+    }
+
+    public void setCurrLocation(Location currLocation) {
+        this.currLocation = currLocation;
+    }
+
+    @Override
+    public String toString() {
+        return ""+id;
+    }
 }

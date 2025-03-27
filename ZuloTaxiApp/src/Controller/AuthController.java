@@ -3,6 +3,7 @@ package Controller;
 import Model.Driver;
 import Model.User;
 import Service.AuthService;
+import Service.TaxiBookingService;
 
 import java.util.Scanner;
 
@@ -44,8 +45,10 @@ public class AuthController {
         String serviceOutput = AuthService.CustomerLogin(pair.email,pair.password);
         if(serviceOutput.equals("1")){
             User user = AuthService.findCustomer(pair.email);
-            System.out.println("Cus Logged");
-            //
+
+            TaxiBookingController taxiBookingController = new TaxiBookingController();
+            taxiBookingController.startBookingTaxi();
+
         }
         else System.out.println(serviceOutput);
     }

@@ -16,5 +16,35 @@ public class Location {
         Data.locationArrayList.add(this);
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Character getName() {
+        return name;
+    }
+
+    public void setName(Character name) {
+        this.name = name;
+    }
+
+    public int getDistanceFromOrigin() {
+        return distanceFromOrigin;
+    }
+
+    public void setDistanceFromOrigin(int distanceFromOrigin) {
+        this.distanceFromOrigin = distanceFromOrigin;
+    }
+
+    @Override
+    public String toString() {
+        return
+            "Location : " +
+            name
+            ;
+    }
 }
