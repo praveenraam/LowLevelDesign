@@ -1,7 +1,9 @@
 package Controller;
 
 import Model.Cab;
+import Model.Customer;
 import Model.Location;
+import Model.RideDetails;
 import Service.TaxiBookingService;
 
 import java.util.HashMap;
@@ -13,7 +15,7 @@ public class TaxiBookingController {
     private Scanner in = new Scanner(System.in);
     private TaxiBookingService taxiBookingService = new TaxiBookingService();
 
-    public void startBookingTaxi(){
+    public void startBookingTaxi(Customer customer){
 
             HashMap<Location,List<Cab>> trackingMap = taxiBookingService.getTaxiLocation();
 
@@ -46,6 +48,10 @@ public class TaxiBookingController {
                 System.out.println("Your travel confirmed");
                 taxiBookingService.falseToAllTaxiRide();
                 cab.setLastRide(true);
+
+                RideDetails rideDetails = new RideDetails(sourceLoc,destinationLoc,cab.getDriver(),customer,cab,totalFair);
+                cab.getRideDetailsArrayList().add(rideDetails);
+                customer.getRideDetailsArrayListOfCustomer().add(rideDetails);
             }
             else
                 System.out.println("Your travel cancelled");

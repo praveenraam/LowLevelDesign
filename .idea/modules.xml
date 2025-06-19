@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ATM/BankTransactions/BankTransactions.iml" filepath="$PROJECT_DIR$/ATM/BankTransactions/BankTransactions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LLD.iml" filepath="$PROJECT_DIR$/.idea/LLD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryManagementSystem/LibraryManagementSystem.iml" filepath="$PROJECT_DIR$/LibraryManagementSystem/LibraryManagementSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LoanApplication/LoanApplication.iml" filepath="$PROJECT_DIR$/LoanApplication/LoanApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NaryTree/NaryTree.iml" filepath="$PROJECT_DIR$/NaryTree/NaryTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OnlineShopping/OnlineShopping.iml" filepath="$PROJECT_DIR$/OnlineShopping/OnlineShopping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ParkingSystem/ParkingSystem.iml" filepath="$PROJECT_DIR$/ParkingSystem/ParkingSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RailwaysReservation System/RailwaysReservation System.iml" filepath="$PROJECT_DIR$/RailwaysReservation System/RailwaysReservation System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SnakeAndLadder/SnakeAndLadder.iml" filepath="$PROJECT_DIR$/SnakeAndLadder/SnakeAndLadder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SplitWise/SplitWise.iml" filepath="$PROJECT_DIR$/SplitWise/SplitWise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SuperStore/SuperStore.iml" filepath="$PROJECT_DIR$/SuperStore/SuperStore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TaxiBooklingSystem/TaxiBooklingSystem.iml" filepath="$PROJECT_DIR$/TaxiBooklingSystem/TaxiBooklingSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree_Of_Space/Tree_Of_Space.iml" filepath="$PROJECT_DIR$/Tree_Of_Space/Tree_Of_Space.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tutorials/Tutorials.iml" filepath="$PROJECT_DIR$/Tutorials/Tutorials.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ATM/V1/V1.iml" filepath="$PROJECT_DIR$/ATM/V1/V1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ATM/V2/V2.iml" filepath="$PROJECT_DIR$/ATM/V2/V2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZuloTaxiApp/ZuloTaxiApp.iml" filepath="$PROJECT_DIR$/ZuloTaxiApp/ZuloTaxiApp.iml" />
+    </modules>
+  </component>
+</project>

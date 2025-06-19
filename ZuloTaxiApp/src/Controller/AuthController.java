@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Customer;
 import Model.Driver;
 import Model.User;
 import Service.AuthService;
@@ -44,10 +45,10 @@ public class AuthController {
 
         String serviceOutput = AuthService.CustomerLogin(pair.email,pair.password);
         if(serviceOutput.equals("1")){
-            User user = AuthService.findCustomer(pair.email);
+            Customer customer = AuthService.findCustomer(pair.email);
 
             TaxiBookingController taxiBookingController = new TaxiBookingController();
-            taxiBookingController.startBookingTaxi();
+            taxiBookingController.startBookingTaxi(customer);
 
         }
         else System.out.println(serviceOutput);
